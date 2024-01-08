@@ -1,3 +1,5 @@
+// src/serviceWorkerRegistration.js
+
 export function register() {
 	if ("serviceWorker" in navigator) {
 		navigator.serviceWorker

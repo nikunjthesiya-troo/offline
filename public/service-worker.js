@@ -1,3 +1,5 @@
+// public/service-worker.js
+
 self.addEventListener("install", (event) => {
 	event.waitUntil(
 		caches.open("my-react-app").then((cache) => {
