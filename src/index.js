@@ -15,6 +15,7 @@ if ("serviceWorker" in navigator) {
 			console.error("Error registering Service Worker:", error);
 		});
 }
+
 root.render(
 	<React.StrictMode>
 		<App />

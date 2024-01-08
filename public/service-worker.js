@@ -5,29 +5,23 @@ const urlsToCache = [
 	"/",
 	"/index.html",
 	"/manifest.json",
-	"/static/js/bundle.js",
-	"/static/js/0.chunk.js",
+	"/favicon.ico",
 	"/static/js/main.chunk.js",
+	"/static/js/0.chunk.js",
+	"/static/js/bundle.js",
 	"/static/css/main.chunk.css",
-	// Add other paths to static assets like images, fonts, etc.
 ];
 
 self.addEventListener("install", (event) => {
 	event.waitUntil(
-		caches.open(CACHE_NAME).then((cache) => {
-			return cache.addAll(urlsToCache).then(() => self.skipWaiting());
-		})
+		caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
 	);
-});
-
-self.addEventListener("activate", (event) => {
-	event.waitUntil(self.clients.claim());
 });
 
 self.addEventListener("fetch", (event) => {
 	event.respondWith(
-		caches.match(event.request).then((response) => {
-			return response || fetch(event.request);
-		})
+		caches
+			.match(event.request)
+			.then((response) => response || fetch(event.request))
 	);
 });
